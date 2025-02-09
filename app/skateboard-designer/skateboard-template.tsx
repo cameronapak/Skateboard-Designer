@@ -179,6 +179,39 @@ const SkateboardTemplate: React.FC<React.SVGProps<SVGSVGElement> & { color?: str
           className="stroke-shape"
         />
       </g>
+
+      {/* Add Nose (N) and Tail (T) labels */}
+      <text
+        x="695"
+        y="370"
+        style={{
+          fill: color,
+          stroke: "none",
+          fontSize: "125px",
+          fontWeight: "bold",
+          fontFamily: "Arial, sans-serif",
+          dominantBaseline: "middle",
+          opacity: 0.2
+        }}
+      >
+        N
+      </text>
+      <text
+        x="2310"
+        y="370"
+        style={{
+          fill: color,
+          stroke: "none",
+          fontSize: "125px",
+          fontWeight: "bold",
+          fontFamily: "Arial, sans-serif",
+          dominantBaseline: "middle",
+          textAnchor: "end",
+          opacity: 0.2
+        }}
+      >
+        T
+      </text>
     </svg>
   )
 }
