@@ -18,9 +18,7 @@ const SkateboardDesigner: React.FC = () => {
   const [size, setSize] = useState({ width: 2976, height: 720 })
   const [rotation, setRotation] = useState(0)
   const [isDragging, setIsDragging] = useState(false)
-  const [isResizing, setIsResizing] = useState(false)
   const [dragStart, setDragStart] = useState({ x: 0, y: 0 })
-  const [resizeStart, setResizeStart] = useState({ x: 0, y: 0, width: 0, height: 0 })
   const [showSnapLines, setShowSnapLines] = useState({ vertical: false, horizontal: false })
   const [sizePercentage, setSizePercentage] = useState(100)
   const [isDarkImage, setIsDarkImage] = useState(false)
@@ -198,40 +196,14 @@ const SkateboardDesigner: React.FC = () => {
           y: Math.abs(newY - centerY) < snapThreshold ? centerY : newY,
         })
       }
-
-      if (isResizing && containerRef.current) {
-        const newWidth = resizeStart.width + (e.clientX - resizeStart.x)
-        const newHeight = resizeStart.height + (e.clientY - resizeStart.y)
-
-        setSize({
-          width: Math.max(newWidth, 50),
-          height: Math.max(newHeight, 50),
-        })
-      }
     },
-    [isDragging, isResizing, dragStart, resizeStart, size],
+    [isDragging, dragStart, size],
   )
 
   const handleMouseUp = useCallback(() => {
     setIsDragging(false)
-    setIsResizing(false)
     setShowSnapLines({ vertical: false, horizontal: false })
   }, [])
-
-  const handleResizeStart = useCallback(
-    (e: React.MouseEvent) => {
-      e.preventDefault()
-      e.stopPropagation()
-      setIsResizing(true)
-      setResizeStart({
-        x: e.clientX,
-        y: e.clientY,
-        width: size.width,
-        height: size.height,
-      })
-    },
-    [size],
-  )
 
   const handleRotate = useCallback(() => {
     setRotation((prevRotation) => (prevRotation + 90) % 360)
@@ -284,11 +256,10 @@ const SkateboardDesigner: React.FC = () => {
   useEffect(() => {
     const handleGlobalMouseUp = () => {
       setIsDragging(false)
-      setIsResizing(false)
     }
 
     const handleGlobalMouseMove = (e: MouseEvent) => {
-      if (isDragging || isResizing) {
+      if (isDragging) {
         handleMouseMove(e as unknown as React.MouseEvent)
       }
     }
@@ -300,7 +271,7 @@ const SkateboardDesigner: React.FC = () => {
       window.removeEventListener("mouseup", handleGlobalMouseUp)
       window.removeEventListener("mousemove", handleGlobalMouseMove)
     }
-  }, [isDragging, isResizing, handleMouseMove])
+  }, [isDragging, handleMouseMove])
 
   return (
     <div className="p-6 relative w-full max-w-3xl mx-auto">
@@ -334,10 +305,6 @@ const SkateboardDesigner: React.FC = () => {
                   alt="Uploaded design"
                   className="w-full h-full object-contain"
                   draggable={false}
-                />
-                <div
-                  className="absolute bg-blue-500 cursor-se-resize w-4 h-4 -bottom-2 -right-2 z-10"
-                  onMouseDown={handleResizeStart}
                 />
               </div>
             </div>
