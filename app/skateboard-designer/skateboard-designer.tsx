@@ -7,6 +7,10 @@ import { Slider } from "@/components/ui/slider"
 import { RotateCw, Download } from "lucide-react"
 import SkateboardTemplate from "./skateboard-template"
 import html2canvas from "html2canvas"
+import * as pdfjsLib from 'pdfjs-dist'
+
+// Initialize PDF.js worker
+pdfjsLib.GlobalWorkerOptions.workerSrc = `//cdnjs.cloudflare.com/ajax/libs/pdf.js/${pdfjsLib.version}/pdf.worker.min.js`
 
 const SkateboardDesigner: React.FC = () => {
   const [image, setImage] = useState<string | null>(null)
@@ -51,9 +55,65 @@ const SkateboardDesigner: React.FC = () => {
     return averageBrightness / 255
   }, [])
 
-  const handleFileChange = (event: React.ChangeEvent<HTMLInputElement>) => {
+  const handleFileChange = async (event: React.ChangeEvent<HTMLInputElement>) => {
     const file = event.target.files?.[0]
-    if (file) {
+    if (!file) return
+
+    if (file.type === 'application/pdf') {
+      // Handle PDF file
+      const arrayBuffer = await file.arrayBuffer()
+      const pdf = await pdfjsLib.getDocument({ data: arrayBuffer }).promise
+      const page = await pdf.getPage(1)
+      const viewport = page.getViewport({ scale: 1.0 })
+
+      // Create canvas to render PDF
+      const canvas = document.createElement('canvas')
+      const context = canvas.getContext('2d')
+      if (!context) return
+
+      canvas.height = viewport.height
+      canvas.width = viewport.width
+
+      // Render PDF page to canvas
+      await page.render({
+        canvasContext: context,
+        viewport: viewport
+      }).promise
+
+      // Convert canvas to image data URL
+      const imageDataUrl = canvas.toDataURL('image/png')
+      setImage(imageDataUrl)
+
+      if (containerRef.current) {
+        const img = new Image()
+        img.onload = () => {
+          const containerWidth = containerRef.current!.offsetWidth
+          const containerHeight = containerRef.current!.offsetHeight
+          const imageAspectRatio = img.width / img.height
+
+          let newWidth, newHeight
+
+          if (containerWidth / containerHeight > imageAspectRatio) {
+            newHeight = containerHeight
+            newWidth = newHeight * imageAspectRatio
+          } else {
+            newWidth = containerWidth
+            newHeight = newWidth / imageAspectRatio
+          }
+
+          setSize({ width: newWidth, height: newHeight })
+          setPosition({
+            x: (containerWidth - newWidth) / 2,
+            y: (containerHeight - newHeight) / 2,
+          })
+
+          const brightness = calculateAverageBrightness(img)
+          setIsDarkImage(brightness < 0.5)
+        }
+        img.src = imageDataUrl
+      }
+    } else {
+      // Handle image file (existing code)
       const reader = new FileReader()
       reader.onload = (e) => {
         setImage(e.target?.result as string)
@@ -80,7 +140,6 @@ const SkateboardDesigner: React.FC = () => {
               y: (containerHeight - newHeight) / 2,
             })
 
-            // Calculate brightness and set isDarkImage
             const brightness = calculateAverageBrightness(img)
             setIsDarkImage(brightness < 0.5)
           }
@@ -91,6 +150,8 @@ const SkateboardDesigner: React.FC = () => {
       }
       reader.readAsDataURL(file)
     }
+    setRotation(0)
+    setSizePercentage(100)
   }
 
   const handleMouseDown = useCallback(
@@ -280,7 +341,12 @@ const SkateboardDesigner: React.FC = () => {
         )}
       </div>
       <div className="mt-4 flex flex-col space-y-4">
-        <input type="file" accept="image/*" onChange={handleFileChange} className="sr-only" id="image-upload" />
+        <input
+          type="file"
+          onChange={handleFileChange}
+          accept="image/*,.pdf"
+          className="mb-4"
+        />
         <div className="flex space-x-4">
           <Button asChild>
             <label htmlFor="image-upload" className="cursor-pointer">
