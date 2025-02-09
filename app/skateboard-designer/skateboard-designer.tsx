@@ -15,7 +15,7 @@ pdfjsLib.GlobalWorkerOptions.workerSrc = `//cdnjs.cloudflare.com/ajax/libs/pdf.j
 const SkateboardDesigner: React.FC = () => {
   const [image, setImage] = useState<string | null>(null)
   const [position, setPosition] = useState({ x: 0, y: 0 })
-  const [size, setSize] = useState({ width: 2976, height: 720 })
+  const [size, setSize] = useState({ width: 428, height: 1741 })
   const [rotation, setRotation] = useState(0)
   const [isDragging, setIsDragging] = useState(false)
   const [dragStart, setDragStart] = useState({ x: 0, y: 0 })
@@ -26,8 +26,7 @@ const SkateboardDesigner: React.FC = () => {
   const containerRef = useRef<HTMLDivElement>(null)
   const designRef = useRef<HTMLDivElement>(null)
 
-  const skateboardMaskBase64 =
-    "data:image/svg+xml;base64,PHN2ZyB3aWR0aD0iMjk3NiIgaGVpZ2h0PSI3MjAiIHZpZXdCb3g9IjAgMCAyOTc2IDcyMCIgeG1sbnM9Imh0dHA6Ly93d3cudzMub3JnLzIwMDAvc3ZnIj48cGF0aCBmaWxsPSJ3aGl0ZSIgZD0iTTI2MTYsMEMyODE0LjgyLDAsMjk3NiwxNjEuMTgsMjk3NiwzNjBDMjk3Niw1NTguODIsMjgxNC44Miw3MjAsMjYxNiw3MjBIMzYwQzE2MS4xOCw3MjAsMCw1NTguODIsMCwzNjBDMCwxNjEuMTgsMTYxLjE4LDAsMzYwLDBIMjYxNloiLz48L3N2Zz4="
+  const skateboardMaskBase64 = "data:image/svg+xml;base64,PHN2ZyB3aWR0aD0iNDI4IiBoZWlnaHQ9IjE3NDEiIHZpZXdCb3g9IjAgMCA0MjggMTc0MSIgZmlsbD0ibm9uZSIgeG1sbnM9Imh0dHA6Ly93d3cudzMub3JnLzIwMDAvc3ZnIj48cGF0aCBmaWxsPSJ3aGl0ZSIgZD0iTTQyMy43MTEgMTUyNy4xNEM0MjMuNzExIDE2NDQuNjYgMzI5LjY4MiAxNzM3IDIxMy44NTUgMTczN0M5OC4wMjg4IDE3MzcgNCAxNjQ0LjY2IDQgMTUyNy4xNFYyMTMuODU1QzQgOTguMDI4OCA5OC4wMjg4IDQgMjEzLjg1NSA0QzMyOS42ODIgNCA0MjMuNzExIDk4LjAyODggNDIzLjcxMSAyMTMuODU1VjE1MjcuMTRaIi8+PC9zdmc+"
 
   const calculateAverageBrightness = useCallback((imageElement: HTMLImageElement) => {
     const canvas = document.createElement("canvas")
@@ -274,8 +273,8 @@ const SkateboardDesigner: React.FC = () => {
   }, [isDragging, handleMouseMove])
 
   return (
-    <div className="p-6 relative w-full max-w-3xl mx-auto">
-      <div ref={containerRef} className="relative px-[1px]" style={{ paddingBottom: "25%" }}>
+    <div className="p-6 relative w-full grid grid-cols-[128px_1fr] items-center gap-8 mx-auto">
+      <div ref={containerRef} className="relative px-[1px]" style={{ paddingBottom: "407%" }}>
         <div ref={designRef} className="absolute inset-0 overflow-hidden">
           {image && (
             <div

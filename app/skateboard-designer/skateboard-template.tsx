@@ -5,213 +5,80 @@ const SkateboardTemplate: React.FC<React.SVGProps<SVGSVGElement> & { color?: str
   ...props
 }) => {
   return (
-    <svg viewBox="0 0 2976 719.997" xmlns="http://www.w3.org/2000/svg" fill="none" {...props}>
-      <path
-        d="M2616.000,0.001C2814.823,0.001,2976.000,161.179,2976.000,359.999C2976.000,558.821,2814.823,719.997,2616.000,719.997L360.000,719.997C161.177,719.997,0.000,558.820,0.000,359.997C0.000,161.177,161.177,0.000,360.000,0.000Z"
-        style={{ fill: "none", strokeLinejoin: "miter", strokeMiterlimit: 4, strokeDasharray: "none", stroke: color }}
-        className="fills"
-      />
-      <g
-        className="strokes"
-        style={{ fill: "none", strokeLinejoin: "miter", strokeMiterlimit: 4, strokeDasharray: "none", stroke: color }}
-      >
-        <g className="outer-stroke-shape">
-          <defs>
-            <mask id="b" x="-9.657" y="-9.657" width="2995.314" height="739.311" maskUnits="userSpaceOnUse">
-              <use href="#a" style={{ fill: "none", stroke: "white", strokeWidth: 8 }} />
-              <use href="#a" style={{ fill: "black", stroke: "none" }} />
-            </mask>
-            <path
-              d="M2616.000,0.001C2814.823,0.001,2976.000,161.179,2976.000,359.999C2976.000,558.821,2814.823,719.997,2616.000,719.997L360.000,719.997C161.177,719.997,0.000,558.820,0.000,359.997C0.000,161.177,161.177,0.000,360.000,0.000Z"
-              id="a"
-            />
-          </defs>
-          <use href="#a" mask="url(#b)" style={{ fill: "none", strokeWidth: 8, stroke: color, strokeOpacity: 1 }} />
-          <use href="#a" style={{ fill: "none", strokeWidth: 4, stroke: color, strokeOpacity: 1 }} />
-        </g>
-      </g>
-      <path
-        d="M2633.122,25.587C2809.393,25.587,2952.292,175.825,2952.292,361.142C2952.292,546.465,2809.393,696.695,2633.122,696.695L341.713,696.695C165.438,696.695,22.541,546.463,22.541,361.141C22.541,175.823,165.438,25.586,341.713,25.586Z"
-        style={{
-          fill: "none",
-          strokeDashoffset: 0,
-          strokeLinejoin: "miter",
-          strokeDasharray: 12,
-          strokeMiterlimit: 4,
-          stroke: color,
-        }}
-        className="fills"
-      />
-      <g
-        className="strokes"
-        style={{
-          fill: "none",
-          strokeDashoffset: 0,
-          strokeLinejoin: "miter",
-          strokeDasharray: 12,
-          strokeMiterlimit: 4,
-          stroke: color,
-        }}
-      >
+    <svg width="428" height="1741" viewBox="0 0 428 1741" fill="none" xmlns="http://www.w3.org/2000/svg" {...props}>
+      <g clipPath="url(#clip0_1653_21)">
         <path
-          d="M2633.122,25.587C2809.393,25.587,2952.292,175.825,2952.292,361.142C2952.292,546.465,2809.393,696.695,2633.122,696.695L341.713,696.695C165.438,696.695,22.541,546.463,22.541,361.141C22.541,175.823,165.438,25.586,341.713,25.586Z"
-          style={{ fill: "none", strokeWidth: 4, stroke: color, strokeOpacity: 1 }}
-          className="stroke-shape"
+          d="M423.711 1527.14C423.711 1644.66 329.682 1737 213.855 1737C98.0288 1737 4 1644.66 4 1527.14V213.855C4 98.0288 98.0288 4 213.855 4C329.682 4 423.711 98.0288 423.711 213.855V1527.14Z"
+          stroke={color}
+          strokeOpacity="0.2"
+          strokeWidth="6.76953"
+          strokeLinecap="round"
+          strokeLinejoin="round"
+        />
+        <path
+          d="M169.854 376.324C173.593 376.324 176.624 373.293 176.624 369.554C176.624 365.815 173.593 362.785 169.854 362.785C166.115 362.785 163.084 365.815 163.084 369.554C163.084 373.293 166.115 376.324 169.854 376.324Z"
+          stroke={color}
+          strokeOpacity="0.2"
+          strokeWidth="5.07715"
+        />
+        <path
+          d="M257.857 376.324C261.596 376.324 264.627 373.293 264.627 369.554C264.627 365.815 261.596 362.785 257.857 362.785C254.119 362.785 251.088 365.815 251.088 369.554C251.088 373.293 254.119 376.324 257.857 376.324Z"
+          stroke={color}
+          strokeOpacity="0.2"
+          strokeWidth="5.07715"
+        />
+        <path
+          d="M169.854 491.406C173.593 491.406 176.624 488.375 176.624 484.636C176.624 480.898 173.593 477.867 169.854 477.867C166.115 477.867 163.084 480.898 163.084 484.636C163.084 488.375 166.115 491.406 169.854 491.406Z"
+          stroke={color}
+          strokeOpacity="0.2"
+          strokeWidth="5.07715"
+        />
+        <path
+          d="M257.857 491.406C261.596 491.406 264.627 488.375 264.627 484.636C264.627 480.898 261.596 477.867 257.857 477.867C254.119 477.867 251.088 480.898 251.088 484.636C251.088 488.375 254.119 491.406 257.857 491.406Z"
+          stroke={color}
+          strokeOpacity="0.2"
+          strokeWidth="5.07715"
+        />
+        <path
+          d="M169.854 1273.29C173.593 1273.29 176.624 1270.26 176.624 1266.52C176.624 1262.78 173.593 1259.75 169.854 1259.75C166.115 1259.75 163.084 1262.78 163.084 1266.52C163.084 1270.26 166.115 1273.29 169.854 1273.29Z"
+          stroke={color}
+          strokeOpacity="0.2"
+          strokeWidth="5.07715"
+        />
+        <path
+          d="M257.857 1273.29C261.596 1273.29 264.627 1270.26 264.627 1266.52C264.627 1262.78 261.596 1259.75 257.857 1259.75C254.119 1259.75 251.088 1262.78 251.088 1266.52C251.088 1270.26 254.119 1273.29 257.857 1273.29Z"
+          stroke={color}
+          strokeOpacity="0.2"
+          strokeWidth="5.07715"
+        />
+        <path
+          d="M169.854 1388.37C173.593 1388.37 176.624 1385.34 176.624 1381.6C176.624 1377.86 173.593 1374.83 169.854 1374.83C166.115 1374.83 163.084 1377.86 163.084 1381.6C163.084 1385.34 166.115 1388.37 169.854 1388.37Z"
+          stroke={color}
+          strokeOpacity="0.2"
+          strokeWidth="5.07715"
+        />
+        <path
+          d="M257.857 1388.37C261.596 1388.37 264.627 1385.34 264.627 1381.6C264.627 1377.86 261.596 1374.83 257.857 1374.83C254.119 1374.83 251.088 1377.86 251.088 1381.6C251.088 1385.34 254.119 1388.37 257.857 1388.37Z"
+          stroke={color}
+          strokeOpacity="0.2"
+          strokeWidth="5.07715"
+        />
+        <path
+          d="M189.254 1526.22V1515.92H237.775V1526.22H219.688V1575H207.341V1526.22H189.254Z"
+          fill={color}
+          fillOpacity="0.1"
+        />
+        <path
+          d="M236.683 172.92V232H225.894L200.191 194.816H199.758V232H187.267V172.92H198.229L223.73 210.076H224.249V172.92H236.683Z"
+          fill={color}
+          fillOpacity="0.1"
         />
       </g>
-      <path
-        d="M2363.904,434.745C2363.904,429.773,2367.932,425.745,2372.904,425.745C2377.876,425.745,2381.904,429.773,2381.904,434.745C2381.904,439.714,2377.876,443.745,2372.904,443.745C2367.932,443.745,2363.904,439.714,2363.904,434.745ZZ"
-        style={{ fill: "none", strokeLinejoin: "miter", strokeMiterlimit: 4, strokeDasharray: "none", stroke: color }}
-        className="fills"
-      />
-      <g
-        className="strokes"
-        style={{ fill: "none", strokeLinejoin: "miter", strokeMiterlimit: 4, strokeDasharray: "none", stroke: color }}
-      >
-        <path
-          d="M2363.904,434.745C2363.904,429.773,2367.932,425.745,2372.904,425.745C2377.876,425.745,2381.904,429.773,2381.904,434.745C2381.904,439.714,2377.876,443.745,2372.904,443.745C2367.932,443.745,2363.904,439.714,2363.904,434.745ZZ"
-          style={{ fill: "none", strokeWidth: 4, stroke: color, strokeOpacity: 1 }}
-          className="stroke-shape"
-        />
-      </g>
-      <path
-        d="M2363.904,284.809C2363.904,279.839,2367.932,275.809,2372.904,275.809C2377.876,275.809,2381.904,279.839,2381.904,284.809C2381.904,289.781,2377.876,293.811,2372.904,293.811C2367.932,293.811,2363.904,289.781,2363.904,284.809ZZ"
-        style={{ fill: "none", strokeLinejoin: "miter", strokeMiterlimit: 4, strokeDasharray: "none", stroke: color }}
-        className="fills"
-      />
-      <g
-        className="strokes"
-        style={{ fill: "none", strokeLinejoin: "miter", strokeMiterlimit: 4, strokeDasharray: "none", stroke: color }}
-      >
-        <path
-          d="M2363.904,284.809C2363.904,279.839,2367.932,275.809,2372.904,275.809C2377.876,275.809,2381.904,279.839,2381.904,284.809C2381.904,289.781,2377.876,293.811,2372.904,293.811C2367.932,293.811,2363.904,289.781,2363.904,284.809ZZ"
-          style={{ fill: "none", strokeWidth: 4, stroke: color, strokeOpacity: 1 }}
-          className="stroke-shape"
-        />
-      </g>
-      <path
-        d="M2166.055,434.745C2166.055,429.773,2170.085,425.745,2175.055,425.745C2180.027,425.745,2184.055,429.773,2184.055,434.745C2184.055,439.714,2180.027,443.745,2175.055,443.745C2170.085,443.745,2166.055,439.714,2166.055,434.745ZZ"
-        style={{ fill: "none", strokeLinejoin: "miter", strokeMiterlimit: 4, strokeDasharray: "none", stroke: color }}
-        className="fills"
-      />
-      <g
-        className="strokes"
-        style={{ fill: "none", strokeLinejoin: "miter", strokeMiterlimit: 4, strokeDasharray: "none", stroke: color }}
-      >
-        <path
-          d="M2166.055,434.745C2166.055,429.773,2170.085,425.745,2175.055,425.745C2180.027,425.745,2184.055,429.773,2184.055,434.745C2184.055,439.714,2180.027,443.745,2175.055,443.745C2170.085,443.745,2166.055,439.714,2166.055,434.745ZZ"
-          style={{ fill: "none", strokeWidth: 4, stroke: color, strokeOpacity: 1 }}
-          className="stroke-shape"
-        />
-      </g>
-      <path
-        d="M2166.055,284.807C2166.055,279.838,2170.085,275.807,2175.055,275.807C2180.027,275.807,2184.055,279.838,2184.055,284.807C2184.055,289.779,2180.027,293.810,2175.055,293.810C2170.085,293.810,2166.055,289.779,2166.055,284.807ZZ"
-        style={{ fill: "none", strokeLinejoin: "miter", strokeMiterlimit: 4, strokeDasharray: "none", stroke: color }}
-        className="fills"
-      />
-      <g
-        className="strokes"
-        style={{ fill: "none", strokeLinejoin: "miter", strokeMiterlimit: 4, strokeDasharray: "none", stroke: color }}
-      >
-        <path
-          d="M2166.055,284.807C2166.055,279.838,2170.085,275.807,2175.055,275.807C2180.027,275.807,2184.055,279.838,2184.055,284.807C2184.055,289.779,2180.027,293.810,2175.055,293.810C2170.085,293.810,2166.055,289.779,2166.055,284.807ZZ"
-          style={{ fill: "none", strokeWidth: 4, stroke: color, strokeOpacity: 1 }}
-          className="stroke-shape"
-        />
-      </g>
-      <path
-        d="M827.924,434.745C827.924,429.773,831.952,425.745,836.924,425.745C841.896,425.745,845.924,429.773,845.924,434.745C845.924,439.714,841.896,443.745,836.924,443.745C831.952,443.745,827.924,439.714,827.924,434.745ZZ"
-        style={{ fill: "none", strokeLinejoin: "miter", strokeMiterlimit: 4, strokeDasharray: "none", stroke: color }}
-        className="fills"
-      />
-      <g
-        className="strokes"
-        style={{ fill: "none", strokeLinejoin: "miter", strokeMiterlimit: 4, strokeDasharray: "none", stroke: color }}
-      >
-        <path
-          d="M827.924,434.745C827.924,429.773,831.952,425.745,836.924,425.745C841.896,425.745,845.924,429.773,845.924,434.745C845.924,439.714,841.896,443.745,836.924,443.745C831.952,443.745,827.924,439.714,827.924,434.745ZZ"
-          style={{ fill: "none", strokeWidth: 4, stroke: color, strokeOpacity: 1 }}
-          className="stroke-shape"
-        />
-      </g>
-      <path
-        d="M827.924,284.807C827.924,279.838,831.952,275.807,836.924,275.807C841.896,275.807,845.924,279.838,845.924,284.807C845.924,289.779,841.896,293.810,836.924,293.810C831.952,293.810,827.924,289.779,827.924,284.807ZZ"
-        style={{ fill: "none", strokeLinejoin: "miter", strokeMiterlimit: 4, strokeDasharray: "none", stroke: color }}
-        className="fills"
-      />
-      <g
-        className="strokes"
-        style={{ fill: "none", strokeLinejoin: "miter", strokeMiterlimit: 4, strokeDasharray: "none", stroke: color }}
-      >
-        <path
-          d="M827.924,284.807C827.924,279.838,831.952,275.807,836.924,275.807C841.896,275.807,845.924,279.838,845.924,284.807C845.924,289.779,841.896,293.810,836.924,293.810C831.952,293.810,827.924,289.779,827.924,284.807ZZ"
-          style={{ fill: "none", strokeWidth: 4, stroke: color, strokeOpacity: 1 }}
-          className="stroke-shape"
-        />
-      </g>
-      <path
-        d="M630.075,434.745C630.075,429.773,634.106,425.745,639.075,425.745C644.049,425.745,648.075,429.773,648.075,434.745C648.075,439.714,644.049,443.745,639.075,443.745C634.106,443.745,630.075,439.714,630.075,434.745ZZ"
-        style={{ fill: "none", strokeLinejoin: "miter", strokeMiterlimit: 4, strokeDasharray: "none", stroke: color }}
-        className="fills"
-      />
-      <g
-        className="strokes"
-        style={{ fill: "none", strokeLinejoin: "miter", strokeMiterlimit: 4, strokeDasharray: "none", stroke: color }}
-      >
-        <path
-          d="M630.075,434.745C630.075,429.773,634.106,425.745,639.075,425.745C644.049,425.745,648.075,429.773,648.075,434.745C648.075,439.714,644.049,443.745,639.075,443.745C634.106,443.745,630.075,439.714,630.075,434.745ZZ"
-          style={{ fill: "none", strokeWidth: 4, stroke: color, strokeOpacity: 1 }}
-          className="stroke-shape"
-        />
-      </g>
-      <path
-        d="M630.075,284.807C630.075,279.838,634.106,275.807,639.075,275.807C644.049,275.807,648.075,279.838,648.075,284.807C648.075,289.779,644.049,293.810,639.075,293.810C634.106,293.810,630.075,289.779,630.075,284.807ZZ"
-        style={{ fill: "none", strokeLinejoin: "miter", strokeMiterlimit: 4, strokeDasharray: "none", stroke: color }}
-        className="fills"
-      />
-      <g
-        className="strokes"
-        style={{ fill: "none", strokeLinejoin: "miter", strokeMiterlimit: 4, strokeDasharray: "none", stroke: color }}
-      >
-        <path
-          d="M630.075,284.807C630.075,279.838,634.106,275.807,639.075,275.807C644.049,275.807,648.075,279.838,648.075,284.807C648.075,289.779,644.049,293.810,639.075,293.810C634.106,293.810,630.075,289.779,630.075,284.807ZZ"
-          style={{ fill: "none", strokeWidth: 4, stroke: color, strokeOpacity: 1 }}
-          className="stroke-shape"
-        />
-      </g>
-
-      {/* Add Nose (N) and Tail (T) labels */}
-      <text
-        x="695"
-        y="370"
-        style={{
-          fill: color,
-          stroke: "none",
-          fontSize: "125px",
-          fontWeight: "bold",
-          fontFamily: "Arial, sans-serif",
-          dominantBaseline: "middle",
-          opacity: 0.2
-        }}
-      >
-        N
-      </text>
-      <text
-        x="2310"
-        y="370"
-        style={{
-          fill: color,
-          stroke: "none",
-          fontSize: "125px",
-          fontWeight: "bold",
-          fontFamily: "Arial, sans-serif",
-          dominantBaseline: "middle",
-          textAnchor: "end",
-          opacity: 0.2
-        }}
-      >
-        T
-      </text>
+      <defs>
+        <clipPath id="clip0_1653_21">
+          <rect width="428" height="1741" fill="white" />
+        </clipPath>
+      </defs>
     </svg>
   )
 }
