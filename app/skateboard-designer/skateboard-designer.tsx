@@ -21,36 +21,11 @@ const SkateboardDesigner: React.FC = () => {
   const [dragStart, setDragStart] = useState({ x: 0, y: 0 })
   const [showSnapLines, setShowSnapLines] = useState({ vertical: false, horizontal: false })
   const [sizePercentage, setSizePercentage] = useState(100)
-  const [isDarkImage, setIsDarkImage] = useState(false)
   const imageRef = useRef<HTMLImageElement>(null)
   const containerRef = useRef<HTMLDivElement>(null)
   const designRef = useRef<HTMLDivElement>(null)
 
   const skateboardMaskBase64 = "data:image/svg+xml;base64,PHN2ZyB3aWR0aD0iNDI4IiBoZWlnaHQ9IjE3NDEiIHZpZXdCb3g9IjAgMCA0MjggMTc0MSIgZmlsbD0ibm9uZSIgeG1sbnM9Imh0dHA6Ly93d3cudzMub3JnLzIwMDAvc3ZnIj48cGF0aCBmaWxsPSJ3aGl0ZSIgZD0iTTQyMy43MTEgMTUyNy4xNEM0MjMuNzExIDE2NDQuNjYgMzI5LjY4MiAxNzM3IDIxMy44NTUgMTczN0M5OC4wMjg4IDE3MzcgNCAxNjQ0LjY2IDQgMTUyNy4xNFYyMTMuODU1QzQgOTguMDI4OCA5OC4wMjg4IDQgMjEzLjg1NSA0QzMyOS42ODIgNCA0MjMuNzExIDk4LjAyODggNDIzLjcxMSAyMTMuODU1VjE1MjcuMTRaIi8+PC9zdmc+"
-
-  const calculateAverageBrightness = useCallback((imageElement: HTMLImageElement) => {
-    const canvas = document.createElement("canvas")
-    const ctx = canvas.getContext("2d")
-    if (!ctx) return 0
-
-    canvas.width = imageElement.width
-    canvas.height = imageElement.height
-    ctx.drawImage(imageElement, 0, 0, imageElement.width, imageElement.height)
-
-    const imageData = ctx.getImageData(0, 0, canvas.width, canvas.height)
-    const data = imageData.data
-    let sum = 0
-
-    for (let i = 0; i < data.length; i += 4) {
-      const r = data[i]
-      const g = data[i + 1]
-      const b = data[i + 2]
-      sum += (r + g + b) / 3
-    }
-
-    const averageBrightness = sum / (imageData.width * imageData.height)
-    return averageBrightness / 255
-  }, [])
 
   const handleFileChange = async (event: React.ChangeEvent<HTMLInputElement>) => {
     const file = event.target.files?.[0]
@@ -110,9 +85,6 @@ const SkateboardDesigner: React.FC = () => {
             x: (containerWidth - newWidth) / 2,
             y: (containerHeight - newHeight) / 2,
           })
-
-          const brightness = calculateAverageBrightness(img)
-          setIsDarkImage(brightness < 0.5)
         }
         img.src = imageDataUrl
       }
@@ -120,6 +92,9 @@ const SkateboardDesigner: React.FC = () => {
       // Handle image file
       const reader = new FileReader()
       reader.onload = (e) => {
+        const imageDataUrl = e.target?.result as string
+        setImage(imageDataUrl)
+
         const img = new Image()
         img.onload = () => {
           // Check image dimensions (minimum 1000px on shortest side recommended)
@@ -150,14 +125,11 @@ const SkateboardDesigner: React.FC = () => {
               x: (containerWidth - newWidth) / 2,
               y: (containerHeight - newHeight) / 2,
             })
-
-            const brightness = calculateAverageBrightness(img)
-            setIsDarkImage(brightness < 0.5)
           }
           setRotation(0)
           setSizePercentage(100)
         }
-        img.src = e.target?.result as string
+        img.src = imageDataUrl
       }
       reader.readAsDataURL(file)
     }
@@ -310,7 +282,7 @@ const SkateboardDesigner: React.FC = () => {
           )}
           <SkateboardTemplate
             className="absolute inset-0 w-full h-full pointer-events-none"
-            color={isDarkImage ? "white" : "black"}
+            color="black"
           />
         </div>
         {isDragging && showSnapLines.vertical && (
