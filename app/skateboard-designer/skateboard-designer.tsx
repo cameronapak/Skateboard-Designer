@@ -59,6 +59,13 @@ const SkateboardDesigner: React.FC = () => {
     const file = event.target.files?.[0]
     if (!file) return
 
+    // Check file size (minimum 100KB recommended for decent quality)
+    const MIN_FILE_SIZE = 100 * 1024; // 100KB in bytes
+    if (file.size < MIN_FILE_SIZE && file.type !== 'application/pdf') {
+      alert('The image quality is too low. Please upload a higher quality image (minimum 100KB).')
+      return
+    }
+
     if (file.type === 'application/pdf') {
       // Handle PDF file
       const arrayBuffer = await file.arrayBuffer()
@@ -113,15 +120,22 @@ const SkateboardDesigner: React.FC = () => {
         img.src = imageDataUrl
       }
     } else {
-      // Handle image file (existing code)
+      // Handle image file
       const reader = new FileReader()
       reader.onload = (e) => {
-        setImage(e.target?.result as string)
-        if (containerRef.current) {
-          const img = new Image()
-          img.onload = () => {
-            const containerWidth = containerRef.current!.offsetWidth
-            const containerHeight = containerRef.current!.offsetHeight
+        const img = new Image()
+        img.onload = () => {
+          // Check image dimensions (minimum 1000px on shortest side recommended)
+          const MIN_DIMENSION = 1000;
+          if (img.width < MIN_DIMENSION || img.height < MIN_DIMENSION) {
+            alert('The image resolution is too low. Please upload a higher resolution image (minimum 1000px on shortest side).')
+            setImage(null)
+            return
+          }
+
+          if (containerRef.current) {
+            const containerWidth = containerRef.current.offsetWidth
+            const containerHeight = containerRef.current.offsetHeight
             const imageAspectRatio = img.width / img.height
 
             let newWidth, newHeight
@@ -143,10 +157,10 @@ const SkateboardDesigner: React.FC = () => {
             const brightness = calculateAverageBrightness(img)
             setIsDarkImage(brightness < 0.5)
           }
-          img.src = e.target?.result as string
+          setRotation(0)
+          setSizePercentage(100)
         }
-        setRotation(0)
-        setSizePercentage(100)
+        img.src = e.target?.result as string
       }
       reader.readAsDataURL(file)
     }
