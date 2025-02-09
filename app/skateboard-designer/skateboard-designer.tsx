@@ -345,12 +345,13 @@ const SkateboardDesigner: React.FC = () => {
           type="file"
           onChange={handleFileChange}
           accept="image/*,.pdf"
-          className="mb-4"
+          className="hidden"
+          id="file-upload"
         />
         <div className="flex space-x-4">
           <Button asChild>
-            <label htmlFor="image-upload" className="cursor-pointer">
-              Upload Image
+            <label htmlFor="file-upload" className="cursor-pointer">
+              Upload Design
             </label>
           </Button>
           {image && (
