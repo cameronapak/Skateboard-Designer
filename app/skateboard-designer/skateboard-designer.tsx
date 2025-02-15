@@ -21,6 +21,7 @@ const SkateboardDesigner: React.FC = () => {
   const [dragStart, setDragStart] = useState({ x: 0, y: 0 })
   const [showSnapLines, setShowSnapLines] = useState({ vertical: false, horizontal: false })
   const [sizePercentage, setSizePercentage] = useState(100)
+  const [isExporting, setIsExporting] = useState(false)
   const imageRef = useRef<HTMLImageElement>(null)
   const containerRef = useRef<HTMLDivElement>(null)
   const designRef = useRef<HTMLDivElement>(null)
@@ -181,21 +182,26 @@ const SkateboardDesigner: React.FC = () => {
   }, [])
 
   const handleExport = useCallback(() => {
-    if (!designRef.current) return
+    const designElement = designRef.current
+    if (!designElement) return
 
-    html2canvas(designRef.current, {
-      backgroundColor: null,
-      scale: 4, // Increase scale for higher resolution
-      useCORS: true, // Enable CORS for better image quality
-      allowTaint: true, // Allow cross-origin images
-      logging: false, // Disable logging for better performance
-      imageTimeout: 0, // Remove timeout for image loading
-    }).then((canvas) => {
-      const link = document.createElement("a")
-      link.download = "skateboard-design.png"
-      link.href = canvas.toDataURL("image/png", 1.0) // Use maximum quality
-      link.click()
-    })
+    setIsExporting(true)
+    setTimeout(() => {
+      html2canvas(designElement, {
+        backgroundColor: null,
+        scale: 4, // Increase scale for higher resolution
+        useCORS: true, // Enable CORS for better image quality
+        allowTaint: true, // Allow cross-origin images
+        logging: false, // Disable logging for better performance
+        imageTimeout: 0, // Remove timeout for image loading
+      }).then((canvas) => {
+        const link = document.createElement("a")
+        link.download = "skateboard-design.png"
+        link.href = canvas.toDataURL("image/png", 1.0) // Use maximum quality
+        link.click()
+        setIsExporting(false)
+      })
+    }, 100) // Small delay to ensure state update is reflected
   }, [])
 
   const handleSizeChange = useCallback((value: number[]) => {
@@ -247,7 +253,7 @@ const SkateboardDesigner: React.FC = () => {
   return (
     <div className="p-6 relative w-full grid grid-cols-[128px_1fr] items-center gap-8 mx-auto">
       <div ref={containerRef} className="relative px-[1px]" style={{ paddingBottom: "407%" }}>
-        <div ref={designRef} className="absolute inset-0 overflow-hidden">
+        <div ref={designRef} className="absolute inset-0 bg-white overflow-hidden">
           {image && (
             <div
               className="absolute inset-0"
@@ -283,6 +289,8 @@ const SkateboardDesigner: React.FC = () => {
           <SkateboardTemplate
             className="absolute inset-0 w-full h-full pointer-events-none"
             color="black"
+            opacity={isExporting ? 1 : 0.2}
+            fillOpacity={isExporting ? 0.5 : 0.1}
           />
         </div>
         {isDragging && showSnapLines.vertical && (
