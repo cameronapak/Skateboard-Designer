@@ -251,8 +251,8 @@ const SkateboardDesigner: React.FC = () => {
   }, [isDragging, handleMouseMove])
 
   return (
-    <div className="p-6 relative w-full grid grid-cols-[128px_1fr] items-center gap-8 mx-auto">
-      <div ref={containerRef} className="relative px-[1px]" style={{ paddingBottom: "407%" }}>
+    <div className="p-6 relative w-full grid sm:grid-cols-[128px_1fr] max-sm:grid-rows-[350px_1fr] items-center gap-8 mx-auto">
+      <div style={{ aspectRatio: "100/413" }} ref={containerRef} className="relative px-[1px] sm:pb-[407%] max-sm:pb-0 max-sm:w-full h-[350px]">
         <div ref={designRef} className="absolute inset-0 bg-white overflow-hidden">
           {image && (
             <div
